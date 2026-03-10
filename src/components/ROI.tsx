@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import {
-  TrendingDown,
   Users,
   Clock,
   Calculator,
@@ -132,10 +131,6 @@ export default function ROI() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <div className="inline-flex items-center gap-2 bg-red-50 text-red-600 text-sm font-medium px-4 py-2 rounded-full mb-6">
-              <TrendingDown size={16} />
-              経済損失レポート
-            </div>
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
               会議の非効率がもたらす
               <br />
@@ -418,58 +413,39 @@ export default function ROI() {
         </div>
       </section>
 
-      {/* Section F: 参考文献 */}
-      <section className="py-16 section-alt">
+      {/* Section F: 参考文献（コンパクト） */}
+      <section className="pt-8 pb-16">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="text-2xl font-bold text-center mb-8"
+            className="text-right"
           >
-            参考文献・データソース
-          </motion.h2>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1, duration: 0.5 }}
-            className="bg-white rounded-2xl border border-gray-100 shadow-sm divide-y divide-gray-100"
-          >
-            {references.map((ref) => (
-              <div
-                key={ref.label}
-                className="px-6 py-4 flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4"
-              >
-                <div className="font-medium text-[#1a1a2e] text-sm shrink-0">
+            <p className="text-[10px] text-gray-400 leading-relaxed">
+              出典:{" "}
+              {references.map((ref, i) => (
+                <span key={ref.label}>
                   {ref.url ? (
                     <a
                       href={ref.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="hover:text-blue-600 transition-colors inline-flex items-center gap-1"
+                      className="hover:text-gray-600 transition-colors"
                     >
                       {ref.label}
-                      <ExternalLink size={12} />
                     </a>
                   ) : (
                     ref.label
                   )}
-                </div>
-                <div className="text-sm text-[#6b7280]">{ref.desc}</div>
-              </div>
-            ))}
+                  {i < references.length - 1 && " / "}
+                </span>
+              ))}
+              <br />
+              前提条件: 総務省「経済センサス」、国税庁「民間給与実態統計調査」をベースに算出
+            </p>
           </motion.div>
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.3, duration: 0.5 }}
-            className="text-center text-xs text-[#6b7280] mt-4"
-          >
-            前提条件: 総務省「経済センサス」、国税庁「民間給与実態統計調査」をベースに算出
-          </motion.p>
         </div>
       </section>
     </>
