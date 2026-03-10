@@ -3,8 +3,11 @@ import Link from "next/link";
 
 const pageLinks = [
   { label: "ホーム", href: "/" },
+  { label: "課題", href: "/problem" },
+  { label: "特徴", href: "/features" },
   { label: "費用対効果", href: "/roi" },
   { label: "技術詳細", href: "/technology" },
+  { label: "ロードマップ", href: "/roadmap" },
 ];
 
 export default function Footer() {
