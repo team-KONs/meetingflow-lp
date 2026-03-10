@@ -6,7 +6,7 @@ import { RotateCcw, UserX, AlertTriangle } from "lucide-react";
 const problems = [
   {
     icon: RotateCcw,
-    title: "議論の空転",
+    title: "議論の空虚化",
     stat: "37%",
     statLabel: "の会議時間が非生産的",
     description:
@@ -42,7 +42,7 @@ export default function Problem() {
           className="text-center mb-16"
         >
           <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-            なぜ、会議は変わらないのか
+            なぜ、会議はムダが多いのか
           </h2>
           <p className="text-[#6b7280] text-lg max-w-2xl mx-auto">
             日本の会議文化が抱える3つの構造的課題

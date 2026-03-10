@@ -59,35 +59,43 @@ export default function Roadmap() {
           </p>
         </motion.div>
 
-        <div className="max-w-2xl mx-auto relative">
+        {/* Horizontal timeline */}
+        <div className="relative">
           {/* Timeline line */}
-          <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-gray-200 md:left-1/2 md:-translate-x-px" />
+          <div className="hidden md:block absolute top-10 left-0 right-0 h-0.5 bg-gray-200" />
 
-          {phases.map((phase, i) => (
-            <motion.div
-              key={phase.phase}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.2, duration: 0.5 }}
-              className="relative pl-16 pb-12 md:pl-0 md:grid md:grid-cols-2 md:gap-8"
-            >
-              {/* Timeline dot */}
-              <div
-                className={`absolute left-4 w-5 h-5 rounded-full border-4 border-white md:left-1/2 md:-translate-x-1/2 z-10 ${
-                  phase.status === "current"
-                    ? "gradient-bg"
-                    : "bg-gray-300"
-                }`}
-              />
-
-              {/* Content */}
-              <div
-                className={`md:${
-                  i % 2 === 0 ? "text-right pr-12" : "col-start-2 pl-12"
-                }`}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {phases.map((phase, i) => (
+              <motion.div
+                key={phase.phase}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.2, duration: 0.5 }}
+                className="relative"
               >
-                <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm">
+                {/* Timeline dot */}
+                <div className="hidden md:flex justify-center mb-8">
+                  <div
+                    className={`w-5 h-5 rounded-full border-4 border-white z-10 ${
+                      phase.status === "current"
+                        ? "gradient-bg"
+                        : "bg-gray-300"
+                    }`}
+                  />
+                </div>
+
+                {/* Arrow between phases (except last) */}
+                {i < phases.length - 1 && (
+                  <div className="hidden md:block absolute top-[38px] right-0 translate-x-1/2 -translate-y-1/2 text-gray-300 z-10">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
+                      <path d="M2 1L10 6L2 11V1Z" />
+                    </svg>
+                  </div>
+                )}
+
+                {/* Card */}
+                <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm h-full">
                   <div className="flex items-center gap-2 mb-2">
                     <phase.icon
                       size={18}
@@ -126,9 +134,9 @@ export default function Roadmap() {
                     ))}
                   </ul>
                 </div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

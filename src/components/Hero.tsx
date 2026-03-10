@@ -15,9 +15,9 @@ export default function Hero() {
             transition={{ duration: 0.6 }}
           >
 <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-              会議中に、
+              AIが会議を最適化する。
               <br />
-              <span className="gradient-text">会議の質を上げる。</span>
+              <span className="gradient-text">リアルタイムで。</span>
             </h1>
             <p className="text-lg text-[#6b7280] mb-8 max-w-lg">
               リアルタイム音声認識と論点構造化で、会議をその場で可視化。
