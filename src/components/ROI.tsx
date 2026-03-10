@@ -124,7 +124,7 @@ export default function ROI() {
   return (
     <>
       {/* Section A: 見出し + リード文 */}
-      <section className="pt-32 pb-16">
+      <section id="roi" className="py-24">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
