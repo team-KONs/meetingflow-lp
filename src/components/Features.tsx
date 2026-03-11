@@ -1,39 +1,20 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Mic, GitBranch, Share2, Shield } from "lucide-react";
+import { Mic, Shield } from "lucide-react";
 import Image from "next/image";
 
 const features = [
   {
     icon: Mic,
-    title: "リアルタイム文字起こし",
+    title: "リアルタイム文字起こし & 論点の自動構造化",
     description:
-      "whisper.cppを活用した高精度な音声認識。会議中の発言をリアルタイムでテキスト化。",
+      "whisper.cppを活用した高精度な音声認識で会議中の発言をリアルタイムにテキスト化。さらにLLMが発言を分析し、論点・合意事項・TODOを自動で分類・構造化。",
     color: "bg-blue-50",
     iconColor: "text-blue-500",
-    image: "/images/03_structure_map_init.png",
-    imageAlt: "リアルタイム文字起こし画面",
-  },
-  {
-    icon: GitBranch,
-    title: "論点の自動構造化",
-    description:
-      "LLMが発言をリアルタイムに分析し、論点・合意事項・TODOを自動で分類・構造化。",
-    color: "bg-indigo-50",
-    iconColor: "text-indigo-500",
-    image: "/images/08_comparison_table.png",
-    imageAlt: "比較表の自動生成画面",
-  },
-  {
-    icon: Share2,
-    title: "マインドマップ可視化",
-    description:
-      "構造化された論点をマインドマップとしてリアルタイム表示。議論の全体像を一目で把握。",
-    color: "bg-purple-50",
-    iconColor: "text-purple-500",
-    image: "/images/11_action_items.png",
-    imageAlt: "マインドマップ全体表示画面",
+    images: [
+      { src: "/images/03_structure_map_init.png", alt: "リアルタイム文字起こし画面" },
+    ],
   },
   {
     icon: Shield,
@@ -42,8 +23,9 @@ const features = [
       "whisper.cppによるオンデバイス音声認識。機密性の高い会議でも安心して利用可能。",
     color: "bg-green-50",
     iconColor: "text-green-500",
-    image: null,
-    imageAlt: null,
+    images: [
+      { src: "/images/local_processing.png", alt: "whisper.cpp と Qwen によるローカル処理" },
+    ],
   },
 ];
 
@@ -60,7 +42,7 @@ export default function Features() {
         >
           <h2 className="text-3xl sm:text-4xl font-bold mb-4">主な機能</h2>
           <p className="text-[#6b7280] text-lg max-w-2xl mx-auto">
-            会議中のリアルタイム支援に特化した4つのコア機能
+            会議中のリアルタイム支援に特化したコア機能
           </p>
         </motion.div>
 
@@ -74,15 +56,18 @@ export default function Features() {
               transition={{ delay: i * 0.1, duration: 0.5 }}
               className="bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow overflow-hidden"
             >
-              {feature.image && (
-                <div className="border-b border-gray-100">
-                  <Image
-                    src={feature.image}
-                    alt={feature.imageAlt!}
-                    width={960}
-                    height={540}
-                    className="w-full h-auto"
-                  />
+              {feature.images.length > 0 && (
+                <div className="border-b border-gray-100 space-y-px">
+                  {feature.images.map((img) => (
+                    <Image
+                      key={img.src}
+                      src={img.src}
+                      alt={img.alt}
+                      width={960}
+                      height={540}
+                      className="w-full h-auto"
+                    />
+                  ))}
                 </div>
               )}
               <div className="p-8">

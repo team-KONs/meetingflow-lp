@@ -17,10 +17,27 @@ export default function Hero() {
 <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6">
               AIが会議を最適化する。
               <br />
-              <span className="gradient-text">リアルタイムで。</span>
+              <span className="gradient-text">リアルタイムで</span>
+              <span className="inline-flex">
+                {[0, 1, 2].map((j) => (
+                  <motion.span
+                    key={j}
+                    className="gradient-text"
+                    animate={{ opacity: [0, 1, 0] }}
+                    transition={{
+                      duration: 1.2,
+                      repeat: Infinity,
+                      delay: j * 0.3,
+                    }}
+                  >
+                    .
+                  </motion.span>
+                ))}
+              </span>
             </h1>
             <p className="text-lg text-[#6b7280] mb-8 max-w-lg">
               リアルタイム音声認識と論点構造化で、会議をその場で可視化。
+              <br />
               whisper.cppによる完全ローカル処理で、安全かつ高速に。
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
