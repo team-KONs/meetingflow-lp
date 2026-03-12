@@ -1,13 +1,13 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Beaker, Rocket, Star } from "lucide-react";
+import { Beaker, Rocket, Star, ChevronRight } from "lucide-react";
 
 const phases = [
   {
     icon: Beaker,
     phase: "PoC",
-    period: "2026年6月〜7月",
+    period: "2026年4月〜7月",
     title: "技術検証フェーズ",
     items: [
       "whisper.cppによるリアルタイム音声認識の検証",
@@ -59,68 +59,55 @@ export default function Roadmap() {
           </p>
         </motion.div>
 
-        {/* Horizontal timeline */}
-        <div className="relative">
-          {/* Timeline line */}
-          <div className="hidden md:block absolute top-10 left-0 right-0 h-0.5 bg-gray-200" />
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {phases.map((phase, i) => (
+        <div className="flex flex-col md:flex-row items-stretch gap-4 md:gap-0">
+          {phases.map((phase, i) => (
+            <div key={phase.phase} className="flex items-stretch flex-1">
               <motion.div
-                key={phase.phase}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.2, duration: 0.5 }}
-                className="relative"
+                className="flex-1"
               >
-                {/* Timeline dot */}
-                <div className="hidden md:flex justify-center mb-8">
-                  <div
-                    className={`w-5 h-5 rounded-full border-4 border-white z-10 ${
-                      phase.status === "current"
-                        ? "gradient-bg"
-                        : "bg-gray-300"
-                    }`}
-                  />
-                </div>
-
-                {/* Arrow between phases (except last) */}
-                {i < phases.length - 1 && (
-                  <div className="hidden md:block absolute top-[38px] right-0 translate-x-1/2 -translate-y-1/2 text-gray-300 z-10">
-                    <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
-                      <path d="M2 1L10 6L2 11V1Z" />
-                    </svg>
-                  </div>
-                )}
-
-                {/* Card */}
-                <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm h-full">
-                  <div className="flex items-center gap-2 mb-2">
-                    <phase.icon
-                      size={18}
-                      className={
+                <div
+                  className={`bg-white rounded-2xl p-6 border shadow-sm h-full ${
+                    phase.status === "current"
+                      ? "border-blue-200 shadow-blue-100"
+                      : "border-gray-100"
+                  }`}
+                >
+                  {/* Step indicator */}
+                  <div className="flex items-center gap-3 mb-4">
+                    <div
+                      className={`w-10 h-10 rounded-full flex items-center justify-center ${
                         phase.status === "current"
-                          ? "text-blue-500"
-                          : "text-gray-400"
-                      }
-                    />
-                    <span
-                      className={`text-sm font-bold ${
-                        phase.status === "current"
-                          ? "gradient-text"
-                          : "text-gray-400"
+                          ? "gradient-bg text-white"
+                          : "bg-gray-100 text-gray-400"
                       }`}
                     >
-                      {phase.phase}
-                    </span>
-                    {phase.status === "current" && (
-                      <span className="text-xs bg-blue-50 text-blue-600 px-2 py-0.5 rounded-full">
-                        現在
-                      </span>
-                    )}
+                      <phase.icon size={18} />
+                    </div>
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <span
+                          className={`text-sm font-bold ${
+                            phase.status === "current"
+                              ? "gradient-text"
+                              : "text-gray-400"
+                          }`}
+                        >
+                          {phase.phase}
+                        </span>
+                        {phase.status === "current" && (
+                          <span className="text-xs bg-blue-50 text-blue-600 px-2 py-0.5 rounded-full">
+                            現在
+                          </span>
+                        )}
+                      </div>
+                      <p className="text-xs text-[#6b7280]">{phase.period}</p>
+                    </div>
                   </div>
-                  <p className="text-xs text-[#6b7280] mb-2">{phase.period}</p>
+
                   <h3 className="font-bold mb-3">{phase.title}</h3>
                   <ul className="space-y-1.5">
                     {phase.items.map((item) => (
@@ -135,8 +122,15 @@ export default function Roadmap() {
                   </ul>
                 </div>
               </motion.div>
-            ))}
-          </div>
+
+              {/* Arrow between cards */}
+              {i < phases.length - 1 && (
+                <div className="hidden md:flex items-center px-3 text-gray-300">
+                  <ChevronRight size={24} />
+                </div>
+              )}
+            </div>
+          ))}
         </div>
       </div>
     </section>

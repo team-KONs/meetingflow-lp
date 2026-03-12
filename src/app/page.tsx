@@ -6,8 +6,6 @@ import HowItWorks from "@/components/HowItWorks";
 import TechStack from "@/components/TechStack";
 import Comparison from "@/components/Comparison";
 import Roadmap from "@/components/Roadmap";
-import CTA from "@/components/CTA";
-
 export default function Home() {
   return (
     <main>
@@ -19,7 +17,6 @@ export default function Home() {
       <Comparison />
       <TechStack />
       <Roadmap />
-      <CTA />
     </main>
   );
 }
